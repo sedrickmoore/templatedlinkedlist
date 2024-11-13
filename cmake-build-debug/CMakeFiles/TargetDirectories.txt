@@ -1,0 +1,3 @@
+/Users/soundbysed/Documents/PROGRAMMING/C++/templatedlinkedlist/cmake-build-debug/CMakeFiles/templatedlinkedlist.dir
+/Users/soundbysed/Documents/PROGRAMMING/C++/templatedlinkedlist/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/soundbysed/Documents/PROGRAMMING/C++/templatedlinkedlist/cmake-build-debug/CMakeFiles/rebuild_cache.dir
