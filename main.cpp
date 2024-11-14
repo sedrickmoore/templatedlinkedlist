@@ -15,17 +15,17 @@ int main() {
 	std::cout << StudentInfo::Name() << std::endl;
 	std::cout << StudentInfo::ID() << std::endl;
 
-	DLList<int> * l = new DLList<int>;; //DLList of integers
+	DLList<int> * l = new DLList<int>; //DLList of integers
 
 	l->add_rear(1);
 	std::cout<< l->front()<<std::endl;
-	l->add_front(5);
-	std::cout << l->front() << std::endl;
-	l->add_front(7);
-	std::cout << l->front() << std::endl;
-	l->add_front(42);
-	l->print();
-	l->remove_rear();
+//	l->add_front(5);
+//	std::cout << l->front() << std::endl;
+//	l->add_front(7);
+//	std::cout << l->front() << std::endl;
+//	l->add_front(42);
+//	l->print();
+//	l->remove_rear();
 	std::cout << l->rear() << std::endl;
 
 	return 0;

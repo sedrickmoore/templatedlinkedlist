@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<assert.h>
+
 // Linked DLList object that maintains both head and tail pointers
 // and the count of the list.  Note that you have to keep the head,
 // tail and count consistent with the intended state of the DLList 
@@ -11,55 +12,65 @@ template<typename Item>
 class DLList {
 public:
 
-	DLList();
+    DLList();
 
-	DLList(const DLList<Item>& other);
+    DLList(const DLList<Item> &other);
 
-	DLList<Item>& operator=(const DLList<Item>& other);
+    DLList<Item> &operator=(const DLList<Item> &other);
 
-	~DLList();
+    ~DLList();
 
-	void	print() const;
-	bool	empty() const;
+    void print() const;
 
-	void	add_front(const Item &itm);
-	void	add_rear(const Item &itm);
-	void	add(int idx, const Item &itm);
+    bool empty() const;
 
-	// Note that the user must head ensure the list is not empty
-	// prior to calling these functions. 
-	Item	front() const;
-	Item	rear() const;
-	Item	peek(int idx) const;
+    void add_front(const Item &itm);
 
-	int		size() const;
-	int		items(const Item &itm) const;
+    void add_rear(const Item &itm);
 
-	int		search(const Item &itm) const;
+    void add(int idx, const Item &itm);
 
-	bool	remove_front();
-	bool	remove_rear();
-	bool	remove_index(int idx);
-	int		remove_item(const Item &itm);
+    // Note that the user must head ensure the list is not empty
+    // prior to calling these functions.
+    Item front() const;
+
+    Item rear() const;
+
+    Item peek(int idx) const;
+
+    int size() const;
+
+    int items(const Item &itm) const;
+
+    int search(const Item &itm) const;
+
+    bool remove_front();
+
+    bool remove_rear();
+
+    bool remove_index(int idx);
+
+    int remove_item(const Item &itm);
 
 
-	bool	sub_list(const DLList<Item>& sub);
+    bool sub_list(const DLList<Item> &sub);
 
 #ifndef MAKE_MEMBERS_PUBLIC
 private:
 #endif
-	// Forward declare the nodes for our DLList.
-	// Will be implemented along with list
-	// member functions
-	class Node;
 
-	// We'll have both head and tail points for 
-	// Fast insertion/deletion from both ends.
-	Node*	head;
-	Node*	tail;
+    // Forward declare the nodes for our DLList.
+    // Will be implemented along with list
+    // member functions
+    class Node;
 
-	// Keep track of number of nodes in the list
-	int		count;
+    // We'll have both head and tail points for
+    // Fast insertion/deletion from both ends.
+    Node *head;
+    Node *tail;
+
+    // Keep track of number of nodes in the list
+    int count;
 };
 
 
@@ -79,24 +90,27 @@ private:
 template<typename Item>
 class DLList<Item>::Node {
 public:
-	Node() :next(nullptr), prev(nullptr) {}
-	Node(Item i, Node* p, Node* n) : item(i), next(n), prev(p) {}
+    Node() : next(nullptr), prev(nullptr) {}
 
-	Node * nxt() const { return next; }
-	void nxt(Node *n) { next = n; }
+    Node(Item i, Node *p, Node *n) : item(i), next(n), prev(p) {}
 
-	Node * prv() const { return prev; }
-	void prv(Node *p) { prev = p; }
+    Node *nxt() const { return next; }
 
-	Item itm() const { return item; }
-	void itm(const Item &i) { item = i; }
+    void nxt(Node *n) { next = n; }
+
+    Node *prv() const { return prev; }
+
+    void prv(Node *p) { prev = p; }
+
+    Item itm() const { return item; }
+
+    void itm(const Item &i) { item = i; }
 
 private:
-	Item  item;
-	Node * next;
-	Node * prev;
+    Item item;
+    Node *next;
+    Node *prev;
 };
-
 
 
 /* DLList default constructor
@@ -110,19 +124,27 @@ DLList<Item>::DLList() :head(nullptr), tail(nullptr), count(0) {
 /* Copy constructor
 */
 template<typename Item>
-DLList<Item>::DLList(const DLList<Item>& other) {
+DLList<Item>::DLList(const DLList<Item> &other) {
 
-	/*   TODO   */
+    if (other.head == nullptr) head = nullptr;
+    if (other.tail == nullptr) tail = nullptr;
+    count = other.count;
+    head = new Node;
+    head->itm() = other.head->itm();
+    for (int i = 0; i < count - 1; i++) {
+
+    }
 
 
 }
+
 /* Overloaded assignment operator
 */
 template<typename Item>
-DLList<Item>& DLList<Item>::operator=(const DLList<Item>& other) {
+DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
 
-	/*   TODO   */
-	return *this;
+    /*   TODO   */
+    return *this;
 }
 
 
@@ -130,9 +152,16 @@ DLList<Item>& DLList<Item>::operator=(const DLList<Item>& other) {
 */
 template<typename Item>
 DLList<Item>::~DLList() {
+    if (head == nullptr)return;
+    Node *curr = head;
 
-	/*   TODO   */
-
+    while (curr != nullptr) {
+        Node *temp = curr->nxt();
+        delete curr;
+        curr = temp;
+    }
+    head = nullptr;
+    tail = nullptr;
 }
 
 /* DLList print
@@ -141,7 +170,7 @@ DLList<Item>::~DLList() {
 template<typename Item>
 void DLList<Item>::print() const {
 
-	/*   TODO   */
+    /*   TODO   */
 
 }
 
@@ -150,9 +179,9 @@ void DLList<Item>::print() const {
 template<typename Item>
 bool DLList<Item>::empty() const {
 
-	/*   TODO   */
-	bool retval = false;
-	return retval;
+    /*   TODO   */
+    bool retval = false;
+    return retval;
 }
 
 
@@ -161,7 +190,7 @@ bool DLList<Item>::empty() const {
 template<typename Item>
 void DLList<Item>::add_front(const Item &itm) {
 
-	/*   TODO   */
+    /*   TODO   */
 
 }
 
@@ -169,9 +198,14 @@ void DLList<Item>::add_front(const Item &itm) {
 */
 template<typename Item>
 void DLList<Item>::add_rear(const Item &itm) {
-
-	/*   TODO   */
-
+    Node *node = new Node(itm, nullptr, nullptr);
+    if (tail != nullptr) {
+        tail->nxt(node);
+        node->prv(tail);
+    }
+    tail = node;
+    if (head == nullptr) { head = node; }
+    count++;
 }
 
 /* DLList add
@@ -179,7 +213,7 @@ void DLList<Item>::add_rear(const Item &itm) {
 template<typename Item>
 void DLList<Item>::add(int idx, const Item &itm) {
 
-	/*   TODO   */
+    /*   TODO   */
 
 }
 
@@ -187,15 +221,13 @@ void DLList<Item>::add(int idx, const Item &itm) {
 */
 template<typename Item>
 Item DLList<Item>::front() const {
-	// Force check that the head is pointing to a Node
-	// Typical solution for deployement code is to throw
-	// exceptions, but since we haven't covered that yet
-	// we'll make due with assert, which is used for testing
-	assert(head != nullptr);
+    // Force check that the head is pointing to a Node
+    // Typical solution for deployement code is to throw
+    // exceptions, but since we haven't covered that yet
+    // we'll make due with assert, which is used for testing
+    assert(head != nullptr);
 
-	/*   TODO   */
-	Item retval{};
-	return retval;
+    return head->itm();
 }
 
 /* DLList rear
@@ -203,15 +235,15 @@ Item DLList<Item>::front() const {
 template<typename Item>
 Item DLList<Item>::rear() const {
 
-	// Force check that the tail is pointing to a Node
-	// Typical solution for deployement code is to throw
-	// exceptions, since we haven't covered that yet
-	// we'll make due with assert, which is used for testing
-	assert(tail != nullptr);
+    // Force check that the tail is pointing to a Node
+    // Typical solution for deployement code is to throw
+    // exceptions, since we haven't covered that yet
+    // we'll make due with assert, which is used for testing
+    assert(tail != nullptr);
 
-	/*   TODO   */
-	Item retval{};
-	return retval;
+    /*   TODO   */
+
+    return tail->itm();
 
 }
 
@@ -220,15 +252,15 @@ Item DLList<Item>::rear() const {
 template<typename Item>
 Item DLList<Item>::peek(int idx) const {
 
-	// Force index to be correct before getting the Item
-	// Typical solution for deployement code is to throw
-	// exceptions, since we haven't covered that yet
-	// we'll make due with assert, which is used for testing
-	assert(idx >= 0 && idx < count);
+    // Force index to be correct before getting the Item
+    // Typical solution for deployement code is to throw
+    // exceptions, since we haven't covered that yet
+    // we'll make due with assert, which is used for testing
+    assert(idx >= 0 && idx < count);
 
-	/*   TODO   */
-	Item retval{};
-	return retval;
+    /*   TODO   */
+    Item retval{};
+    return retval;
 }
 
 /* DLList size
@@ -236,26 +268,28 @@ Item DLList<Item>::peek(int idx) const {
 template<typename Item>
 int DLList<Item>::size() const {
 
-	/*   TODO   */
-	int retval = 8675309;
-	return retval;
+    /*   TODO   */
+    int retval = 8675309;
+    return retval;
 }
+
 template<typename Item>
 int DLList<Item>::items(const Item &itm) const {
 
-	/*   TODO   */
-	int retval = 8675309;
-	return retval;
+    /*   TODO   */
+    int retval = 8675309;
+    return retval;
 
 }
+
 /* DLList search
 */
 template<typename Item>
 int DLList<Item>::search(const Item &itm) const {
 
-	/*   TODO   */
-	int retval = 8675309;
-	return retval;
+    /*   TODO   */
+    int retval = 8675309;
+    return retval;
 }
 
 /* DLList remove_front
@@ -263,18 +297,19 @@ int DLList<Item>::search(const Item &itm) const {
 template<typename Item>
 bool DLList<Item>::remove_front() {
 
-	/*   TODO   */
-	bool retval = false;
-	return retval;
+    /*   TODO   */
+    bool retval = false;
+    return retval;
 }
+
 /* DLList remove_rear
 */
 template<typename Item>
 bool DLList<Item>::remove_rear() {
 
-	/*   TODO   */
-	bool retval = false;
-	return retval;
+    /*   TODO   */
+    bool retval = false;
+    return retval;
 }
 
 /* DLList remove_index
@@ -282,10 +317,10 @@ bool DLList<Item>::remove_rear() {
 template<typename Item>
 bool DLList<Item>::remove_index(int idx) {
 
-	/*   TODO   */
+    /*   TODO   */
 
-	bool retval = false;
-	return retval;
+    bool retval = false;
+    return retval;
 
 }
 
@@ -294,20 +329,20 @@ bool DLList<Item>::remove_index(int idx) {
 template<typename Item>
 int DLList<Item>::remove_item(const Item &itm) {
 
-	/*   TODO   */
-	int retval = 9000;
-	return retval;
+    /*   TODO   */
+    int retval = 9000;
+    return retval;
 
 }
 
 /* DLList sub_list
 */
 template<typename Item>
-bool DLList<Item>::sub_list(const DLList<Item>& sub) {
-	
-	/*   TODO   */
-	bool retval = true;
-	return retval;
+bool DLList<Item>::sub_list(const DLList<Item> &sub) {
+
+    /*   TODO   */
+    bool retval = true;
+    return retval;
 }
 
 #endif
