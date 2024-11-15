@@ -37,6 +37,8 @@ int main() {
     int removedItem = l->remove_item(1);
     std::cout << removedItem << std::endl;
     l->print();
+    l->add(1,52);
+    l->print();
 
 
     return 0;

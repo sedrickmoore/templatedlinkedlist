@@ -219,8 +219,30 @@ void DLList<Item>::add_rear(const Item &itm) {
 */
 template<typename Item>
 void DLList<Item>::add(int idx, const Item &itm) {
+    if (idx <= 0) {
+        add_front(itm);
+        return;
+    }
+    if (idx >= count) {
+        add_rear(itm);
+        return;
+    }
+    Node *node = new Node(itm, nullptr, nullptr);
+    Node *temp = head;
+    int counter = 0;
+    while (counter < idx) {
+        temp = temp->nxt();
+        counter++;
+    }
 
-    /*   TODO   */
+    Node *prev = temp->prv();
+
+    prev->nxt(node);
+    temp->prv(node);
+    node->prv(prev);
+    node->nxt(temp);
+
+    count++;
 
 }
 
@@ -379,7 +401,7 @@ bool DLList<Item>::remove_index(int idx) {
 */
 template<typename Item>
 int DLList<Item>::remove_item(const Item &itm) {
-    if(head == nullptr) return -42;
+    if (head == nullptr) return -42;
     Node *temp = head;
     int counter = 0;
     while (temp != nullptr) {
