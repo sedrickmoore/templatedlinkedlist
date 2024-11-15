@@ -486,10 +486,28 @@ int DLList<Item>::remove_item(const Item &itm) {
 */
 template<typename Item>
 bool DLList<Item>::sub_list(const DLList<Item> &sub) {
+    if (head == nullptr && sub.head == nullptr) return true;
+    if (head == nullptr) return false;
+    if (sub.head == nullptr) return false;
+    if(sub.size() > size()) return false;
 
-    /*   TODO   */
-    bool retval = true;
-    return retval;
+    Node *first = head;
+    Node *second = sub.head;
+    int counter = 0;
+
+    while (first != nullptr) {
+        if (first->itm() == second->itm()) {
+            counter++;
+            second = second->nxt();
+            if (counter == sub.size()) return true;
+        } else if (counter > 0) {
+            second = sub.head;
+            counter = 0;
+        }
+        first = first->nxt();
+    }
+
+    return false;
 }
 
 #endif
