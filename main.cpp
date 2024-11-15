@@ -24,9 +24,8 @@ int main() {
 	l->add_front(7);
 	std::cout << l->front() << std::endl;
 	l->add_front(42);
-    if(l->empty())
 	l->print();
-//	l->remove_rear();
+	l->remove_rear();
 	std::cout << l->rear() << std::endl;
 
 	return 0;

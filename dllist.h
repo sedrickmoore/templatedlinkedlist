@@ -234,7 +234,6 @@ Item DLList<Item>::front() const {
 */
 template<typename Item>
 Item DLList<Item>::rear() const {
-
     assert(tail != nullptr);
     return tail->itm();
 
@@ -289,20 +288,36 @@ int DLList<Item>::search(const Item &itm) const {
 */
 template<typename Item>
 bool DLList<Item>::remove_front() {
+    if(head == nullptr) return false;
+    Node *temp = nullptr;
+    if(head->nxt() != nullptr){
+        temp = head->nxt();
+        temp->prv(nullptr);
+    }
+    delete head;
+    head = temp;
 
-    /*   TODO   */
-    bool retval = false;
-    return retval;
+    if(head == nullptr) tail = nullptr;
+
+    return true;
 }
 
 /* DLList remove_rear
 */
 template<typename Item>
 bool DLList<Item>::remove_rear() {
+    if(tail == nullptr) return false;
+    Node *temp = nullptr;
+    if(tail->prv() != nullptr){
+        temp = tail->prv();
+        temp->nxt(nullptr);
+    }
+    delete tail;
+    tail = temp;
 
-    /*   TODO   */
-    bool retval = false;
-    return retval;
+    if(tail == nullptr) head = nullptr;
+
+    return true;
 }
 
 /* DLList remove_index
