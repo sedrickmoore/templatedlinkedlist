@@ -132,10 +132,7 @@ DLList<Item>::DLList(const DLList<Item> &other) {
     head = new Node;
     head->itm() = other.head->itm();
     for (int i = 0; i < count - 1; i++) {
-
     }
-
-
 }
 
 /* Overloaded assignment operator
@@ -169,19 +166,21 @@ DLList<Item>::~DLList() {
 
 template<typename Item>
 void DLList<Item>::print() const {
-
-    /*   TODO   */
-
+    if (head == nullptr)return;
+    Node *curr = head;
+    while (curr != nullptr) {
+        std::cout << curr->itm();
+        if(curr->nxt() != nullptr)std::cout << " -> ";
+        curr = curr->nxt();
+    }
+    std::cout << std::endl;
 }
 
 /* DLList empty
 */
 template<typename Item>
 bool DLList<Item>::empty() const {
-
-    /*   TODO   */
-    bool retval = false;
-    return retval;
+    return !head;
 }
 
 
@@ -189,8 +188,14 @@ bool DLList<Item>::empty() const {
 */
 template<typename Item>
 void DLList<Item>::add_front(const Item &itm) {
-
-    /*   TODO   */
+    Node *node = new Node(itm, nullptr, nullptr);
+    if (head != nullptr) {
+        head->prv(node);
+        node->nxt(head);
+    }
+    head = node;
+    if (tail == nullptr) { tail = node; }
+    count++;
 
 }
 
@@ -221,12 +226,7 @@ void DLList<Item>::add(int idx, const Item &itm) {
 */
 template<typename Item>
 Item DLList<Item>::front() const {
-    // Force check that the head is pointing to a Node
-    // Typical solution for deployement code is to throw
-    // exceptions, but since we haven't covered that yet
-    // we'll make due with assert, which is used for testing
     assert(head != nullptr);
-
     return head->itm();
 }
 
@@ -235,14 +235,7 @@ Item DLList<Item>::front() const {
 template<typename Item>
 Item DLList<Item>::rear() const {
 
-    // Force check that the tail is pointing to a Node
-    // Typical solution for deployement code is to throw
-    // exceptions, since we haven't covered that yet
-    // we'll make due with assert, which is used for testing
     assert(tail != nullptr);
-
-    /*   TODO   */
-
     return tail->itm();
 
 }
