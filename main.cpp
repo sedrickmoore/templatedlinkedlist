@@ -13,10 +13,11 @@ int main() {
     std::cout << StudentInfo::Name() << std::endl;
     std::cout << StudentInfo::ID() << std::endl;
 
-    DLList<int> *l = new DLList<int>; //DLList of integers
+    DLList<int> *l = new DLList<int>;
+
 
     l->add_rear(1);
-    std::cout << l->front() << std::endl;
+    std::cout<< l->front()<<std::endl;
     l->add_front(5);
     std::cout << l->front() << std::endl;
     l->add_front(7);
@@ -25,20 +26,16 @@ int main() {
     l->print();
     l->remove_rear();
     std::cout << l->rear() << std::endl;
-    std::cout << l->peek(1) << std::endl;
-    l->add_rear(1);
-    l->add_rear(1);
-    l->add_rear(1);
-    std::cout << l->search(7) << std::endl;
-    l->print();
-    bool removed = l->remove_index(0);
-    std::cout << removed << std::endl;
-    l->print();
-    int removedItem = l->remove_item(1);
-    std::cout << removedItem << std::endl;
-    l->print();
-    l->add(1,52);
-    l->print();
+
+    std::cout << std::endl << "New list." << std::endl << std::endl;
+
+    DLList<int> l2(*l);
+    l2.print();
+    std::cout << l->size() << std::endl;
+    std::cout << l2.size() << std::endl;
+    delete l;
+    l2.print();
+
 
 
     return 0;

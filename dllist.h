@@ -126,23 +126,66 @@ DLList<Item>::DLList() :head(nullptr), tail(nullptr), count(0) {
 template<typename Item>
 DLList<Item>::DLList(const DLList<Item> &other) {
 
-    /*   TODO   */
+    head = nullptr;
+    tail = nullptr;
+    count = 0;
 
-    if (other.head == nullptr) head = nullptr;
-    if (other.tail == nullptr) tail = nullptr;
-    count = other.count;
-    head = new Node;
-    head->itm() = other.head->itm();
-    for (int i = 0; i < count - 1; i++) {
+    if (other.head == nullptr) return;
+
+    Node *temp = other.head;
+
+    head = new Node(temp->itm(), nullptr, nullptr);
+    Node *current = head;
+    temp = temp->nxt();
+    count++;
+
+    while (temp != nullptr) {
+        Node *newNode = new Node(temp->itm(), current, nullptr);
+        current->nxt(newNode);
+        current = newNode;
+        temp = temp->nxt();
+        count++;
     }
+
+    tail = current;
 }
 
 /* Overloaded assignment operator
 */
 template<typename Item>
 DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
+    if (this == &other) return;
+    Node *curr = head;
 
-    /*   TODO   */
+    while (curr != nullptr) {
+        Node *temp = curr->nxt();
+        delete curr;
+        curr = temp;
+    }
+
+    head = nullptr;
+    tail = nullptr;
+    count = 0;
+
+    if (other.head == nullptr) return;
+
+    Node *temp = other.head;
+
+    head = new Node(temp->itm(), nullptr, nullptr);
+    Node *current = head;
+    temp = temp->nxt();
+    count++;
+
+    while (temp != nullptr) {
+        Node *newNode = new Node(temp->itm(), current, nullptr);
+        current->nxt(newNode);
+        current = newNode;
+        temp = temp->nxt();
+        count++;
+    }
+
+    tail = current;
+
     return *this;
 }
 
