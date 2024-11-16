@@ -55,6 +55,12 @@ build CMakeFiles/templatedlinkedlist.dir/main.cpp.o: CXX_COMPILER__templatedlink
   OBJECT_DIR = CMakeFiles/templatedlinkedlist.dir
   OBJECT_FILE_DIR = CMakeFiles/templatedlinkedlist.dir
 
+build CMakeFiles/templatedlinkedlist.dir/memorymanager.cpp.o: CXX_COMPILER__templatedlinkedlist_unscanned_Debug /Users/soundbysed/Documents/PROGRAMMING/C++/templatedlinkedlist/memorymanager.cpp || cmake_object_order_depends_target_templatedlinkedlist
+  DEP_FILE = CMakeFiles/templatedlinkedlist.dir/memorymanager.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -mmacosx-version-min=14.6 -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/templatedlinkedlist.dir
+  OBJECT_FILE_DIR = CMakeFiles/templatedlinkedlist.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target templatedlinkedlist
@@ -63,7 +69,7 @@ build CMakeFiles/templatedlinkedlist.dir/main.cpp.o: CXX_COMPILER__templatedlink
 #############################################
 # Link the executable templatedlinkedlist
 
-build templatedlinkedlist: CXX_EXECUTABLE_LINKER__templatedlinkedlist_Debug CMakeFiles/templatedlinkedlist.dir/main.cpp.o
+build templatedlinkedlist: CXX_EXECUTABLE_LINKER__templatedlinkedlist_Debug CMakeFiles/templatedlinkedlist.dir/main.cpp.o CMakeFiles/templatedlinkedlist.dir/memorymanager.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk -mmacosx-version-min=14.6
   OBJECT_DIR = CMakeFiles/templatedlinkedlist.dir
   POST_BUILD = :

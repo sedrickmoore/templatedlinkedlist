@@ -1,6 +1,6 @@
 
 // Choose which run to compile
-#define  RUN0 // RUN0 RUN1 RUN2 RUN3
+#define  L // RUN0 RUN1 RUN2 RUN3
 
 
 #ifdef RUN0
@@ -174,14 +174,123 @@ int main() {
 
     return 0;
 }
+
+#elif defined RUN4
+
+#define MAKE_MEMBERS_PUBLIC
+
+#include"dllist.h"
+#include"studentinfo.h"
+#include<iostream>
+
+int main() {
+    std::cout << StudentInfo::Name() << std::endl;
+    std::cout << StudentInfo::ID() << std::endl;
+
+    DLList<int>::Node* node1 = new DLList<int>::Node;
+    DLList<int>::Node* node2 = new DLList<int>::Node;
+    DLList<int>::Node* node3 = new DLList<int>::Node;
+    DLList<int>::Node* node4 = new DLList<int>::Node;
+    DLList<int>::Node* node5 = new DLList<int>::Node;
+    DLList<int>::Node* node6 = new DLList<int>::Node;
+
+    node1->itm(1);
+    node1->prv(nullptr);
+    node1->nxt(node2);
+
+    node2->itm(2);
+    node2->prv(node1);
+    node2->nxt(node3);
+
+    node3->itm(1);
+    node3->prv(node2);
+    node3->nxt(node4);
+
+    node4->itm(2);
+    node4->prv(node3);
+    node4->nxt(node5);
+
+    node5->itm(3);
+    node5->prv(node4);
+    node5->nxt(node6);
+
+    node6->itm(3);
+    node6->prv(node5);
+    node6->nxt(nullptr);
+
+    DLList<int> * l = new DLList<int>;
+    l->head = node1;
+    l->tail = node6;
+    l->count = 6;
+
+    DLList<int>::Node* sub_node1 = new DLList<int>::Node;
+    DLList<int>::Node* sub_node2 = new DLList<int>::Node;
+    DLList<int>::Node* sub_node3 = new DLList<int>::Node;
+
+    //Assume Constructor Correctly Implemented
+    DLList<int> * sub = new DLList<int>;
+
+    sub_node1->itm(1);
+    sub_node1->prv(nullptr);
+    sub_node1->nxt(sub_node2);
+
+    sub_node2->itm(2);
+    sub_node2->prv(sub_node1);
+    sub_node2->nxt(sub_node3);
+
+    sub_node3->itm(3);
+    sub_node3->prv(sub_node2);
+    sub_node3->nxt(nullptr);
+
+
+    //Set up the initial state of the list to test
+    sub->head = sub_node1;
+    sub->tail = sub_node3;
+    sub->count = 3;
+    l->print();
+    std::cout << std::endl;
+    sub->print();
+    std::cout << std::endl;
+    bool checkSub = l->sub_list(*sub);
+    if(checkSub){std::cout << "Is a sublist."<<std::endl;}else{std::cout << "Is not a sublist."<<std::endl;}
+
+
+    return 0;
+
+}
+
 #else
 //Run unit tests
 #include"listtests.h"
 
 int main() {
 
-    test_add(0);
-    //...
+//    test_empty(1); 		//0-1
+//    test_add_front(1);	//0-1
+//    test_add_rear(1);		//0-1
+//    test_add(6);			//0-6
+//    test_search(4);		//0-4
+//    test_front(0);		//0-1
+//    test_rear(0);			//0-1
+//    test_peek(0);			//0-1
+//    test_remove_front(0); //0-2
+//    test_remove_rear(0);	//0-2
+//    test_remove_index(0); //0-7
+//    test_remove_item(1);	//0-5,
+//    test_print(0);		//0-1
+//    test_size(0);			//0-1
+//    test_items(0);		//0-5
+//    test_copyCtor(0);		//0-2
+//    test_assgnOper(0);	//0-2
+//    test_mem_destructor(0);//0
+//    test_mem_assgnOper(0);//0-1
+//    test_sub_list(1);		//0-12,
+
+int size = 12;
+
+for(int i = 0; i <= size; i++){
+    test_sub_list(i);
+}
 
     return 0;
 }

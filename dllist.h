@@ -154,7 +154,7 @@ DLList<Item>::DLList(const DLList<Item> &other) {
 */
 template<typename Item>
 DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
-    if (this == &other) return;
+    if (this == &other) return *this;
     Node *curr = head;
 
     while (curr != nullptr) {
@@ -167,7 +167,7 @@ DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
     tail = nullptr;
     count = 0;
 
-    if (other.head == nullptr) return;
+    if (other.head == nullptr) return *this;
 
     Node *temp = other.head;
 
@@ -188,7 +188,6 @@ DLList<Item> &DLList<Item>::operator=(const DLList<Item> &other) {
 
     return *this;
 }
-
 
 /* DLList destructor
 */
@@ -211,14 +210,19 @@ DLList<Item>::~DLList() {
 
 template<typename Item>
 void DLList<Item>::print() const {
-    if (head == nullptr)return;
+    if (head == nullptr) return;
+
     Node *curr = head;
+
     while (curr != nullptr) {
         std::cout << curr->itm();
-        if (curr->nxt() != nullptr)std::cout << " -> ";
+
+        if (curr->nxt() != nullptr) {
+            std::cout << " ";
+        }
+
         curr = curr->nxt();
     }
-    std::cout << std::endl;
 }
 
 /* DLList empty
@@ -405,6 +409,7 @@ bool DLList<Item>::remove_rear() {
 */
 template<typename Item>
 bool DLList<Item>::remove_index(int idx) {
+    if (idx < 0 || idx >= count) return false;
     if (head == nullptr) return false;
     Node *temp = head;
     int counter = 0;
@@ -444,7 +449,7 @@ bool DLList<Item>::remove_index(int idx) {
 */
 template<typename Item>
 int DLList<Item>::remove_item(const Item &itm) {
-    if (head == nullptr) return -42;
+    if (head == nullptr) return -1;
     Node *temp = head;
     int counter = 0;
     while (temp != nullptr) {
@@ -488,8 +493,8 @@ template<typename Item>
 bool DLList<Item>::sub_list(const DLList<Item> &sub) {
     if (head == nullptr && sub.head == nullptr) return true;
     if (head == nullptr) return false;
-    if (sub.head == nullptr) return false;
-    if(sub.size() > size()) return false;
+    if (sub.head == nullptr) return true;
+    if (sub.count > count) return false;
 
     Node *first = head;
     Node *second = sub.head;
@@ -499,12 +504,15 @@ bool DLList<Item>::sub_list(const DLList<Item> &sub) {
         if (first->itm() == second->itm()) {
             counter++;
             second = second->nxt();
-            if (counter == sub.size()) return true;
+            if (counter == sub.count) return true;
+
         } else if (counter > 0) {
             second = sub.head;
             counter = 0;
+            continue;
         }
         first = first->nxt();
+
     }
 
     return false;

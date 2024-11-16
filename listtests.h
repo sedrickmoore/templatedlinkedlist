@@ -43,7 +43,7 @@ int test_sub_list(int testNum);		//0-12
 
 // Blank out macros if debugmem.h is not included
 #ifndef DEBUG_NEW
-#define DEBUG_NEW new 
+#define DEBUG_NEW new
 #endif
 #ifndef RESET()
 #define RESET()

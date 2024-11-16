@@ -4,4 +4,5 @@ project(templatedlinkedlist)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(templatedlinkedlist main.cpp
-        listtests.h)
+        listtests.h
+        memorymanager.cpp)
