@@ -3,4 +3,5 @@ project(templatedlinkedlist)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(templatedlinkedlist main.cpp)
+add_executable(templatedlinkedlist main.cpp
+)

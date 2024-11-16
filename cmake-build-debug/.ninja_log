@@ -1,0 +1,8 @@
+# ninja log v6
+5	468	1731733189752082729	CMakeFiles/templatedlinkedlist.dir/main.cpp.o	ed8144c44fa3cb25
+6	463	1731706043446726496	CMakeFiles/templatedlinkedlist.dir/memorymanager.cpp.o	c457145b32e55549
+468	509	1731733190215337436	templatedlinkedlist	26ca3667c6a34ee
+1	48	1731733284206378256	build.ninja	dfaa7650c4176196
+5	43	1731733284217843943	templatedlinkedlist	134ce836ec0cbe4e
+5	444	1731733364908524528	CMakeFiles/templatedlinkedlist.dir/main.cpp.o	ed8144c44fa3cb25
+444	483	1731733365347286733	templatedlinkedlist	134ce836ec0cbe4e
