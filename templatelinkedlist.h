@@ -1,13 +1,9 @@
-#ifndef FA23_CS20A_LlST_H
-#define FA23_CS20A_LlST_H
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 
 #include<iostream>
 #include<assert.h>
 
-// Linked DLList object that maintains both head and tail pointers
-// and the count of the list.  Note that you have to keep the head,
-// tail and count consistent with the intended state of the DLList 
-// otherwise very bad things happen. 
 template<typename Item>
 class DLList {
 public:
@@ -73,20 +69,6 @@ private:
     int count;
 };
 
-
-/* DLList Implementation
-//
-//  Since DLList is a template class (which is not an actual
-//  class yet, not until we actually instantiate the list)
-//  we need to keep the implementation together with
-//  the definition.  There are ways to simulate having
-//  separate "implementation/definition" with templates,
-//  but they aren't necessary and can be confusing.
-*/
-
-/* Node definition
-//		Already implemented, nothing to do here but to use it.
-*/
 template<typename Item>
 class DLList<Item>::Node {
 public:
@@ -112,10 +94,6 @@ private:
     Node *prev;
 };
 
-
-/* DLList default constructor
-//		Already implemented, nothing to do.
-*/
 template<typename Item>
 DLList<Item>::DLList() :head(nullptr), tail(nullptr), count(0) {
 }
@@ -519,95 +497,3 @@ bool DLList<Item>::sub_list(const DLList<Item> &sub) {
 }
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// _X_XMMXXI
